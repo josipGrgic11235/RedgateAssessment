@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedGateTests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,13 @@ namespace RedgateAssessment
     {
         static void Main(string[] args)
         {
+            var reader = new SimpleCharacterReader();
+            var analizer = new WordFrequencyAnalizer(reader);
+
+            var list = analizer.Analize();
+            list.ForEach(wf => Console.WriteLine(wf.ToString()));
+
+            Console.ReadKey();
         }
     }
 }
