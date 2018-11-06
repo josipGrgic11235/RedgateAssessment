@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RedgateAssessment
 {
@@ -32,6 +28,11 @@ namespace RedgateAssessment
                 return false;
             }
 
+            if (obj == this)
+            {
+                return true;
+            }
+
             if (obj is WordFrequency wf)
             {
                 return Equals(wf);
@@ -42,7 +43,12 @@ namespace RedgateAssessment
 
         public bool Equals(WordFrequency obj)
         {
-            return _word == obj.Word;
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return _word == obj.Word && _frequency == obj.Frequency;
         }
 
         public override int GetHashCode()
@@ -82,7 +88,7 @@ namespace RedgateAssessment
                 return byFrequencyCompare;
             }
 
-            return string.Compare(_word, obj.Word, StringComparison.OrdinalIgnoreCase);
+            return _word.ToLowerInvariant().CompareTo(obj.Word.ToLowerInvariant());
         }
     }
 }
